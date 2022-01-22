@@ -362,15 +362,6 @@ $(document).ready(function () {
     });
 
     $("#restart").click(function () {
-        data = copydata;
-        $(".player.left").show();
-        $(".player.right").show();
-        $(".com1.right").show();
-        $(".com1.left").show();
-        $(".com2.right").show();
-        $(".com2.left").show();
-        $(".com3.right").show();
-        $(".com3.left").show();
-        $("#gameOverNotif").hide();
+        location.reload();
     });
 });
