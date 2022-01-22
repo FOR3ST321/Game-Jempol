@@ -39,6 +39,3 @@ let data = {
         thumbRight: true,
     },
 };
-
-
-let copydata = data;

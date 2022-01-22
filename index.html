@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Game Angkat Jempol yang bisa dimainkan secara digital, lawannya adalah 3 komputer, selamat bermain!! Game ini dibuat untuk memenuhi tugas dari mata kuliah Multimedia System">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link
             rel="stylesheet"
@@ -13,7 +14,7 @@
         />
 
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <title>Main Page</title>
+        <title>Game Jempol</title>
     </head>
     <body>
         <div id="notif">
@@ -36,7 +37,7 @@
                 >
                     <h3 class="text-bold">Hasil Ronde</h3>
                     <p id="notif-text" class="text-center"></p>
-                    <button class="btn btn-lg btn-success" id="closeNotif">
+                    <button class="btn btn-lg btn-secondary" id="closeNotif">
                         Tutup
                     </button>
                 </div>
@@ -132,7 +133,7 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h4>Player</h4>
+                            <h2 id="player-win">Player</h2>
                         </div>
                         <img
                             src="./assets/img/tanganKiri.png"
@@ -150,8 +151,6 @@
                             ,
                             style="position: relative"
                         />
-
-                        <h2 id="player-win">MENANG</h2>
                     </div>
                     <div
                         class="col-6 player-box d-flex flex-column-reverse align-items-end justify-content-center"
@@ -162,7 +161,7 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h4>Com 1</h4>
+                            <h2 id="com1-win">Com 1</h2>
                         </div>
                         <img
                             src="./assets/img/tanganKiri.png"
@@ -184,8 +183,6 @@
                                 position: relative;
                             "
                         />
-
-                        <h2 id="com1-win">MENANG</h2>
                     </div>
                     <div
                         class="col-6 player-box d-flex flex-column justify-content-center"
@@ -196,7 +193,7 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h4>Com 2</h4>
+                            <h2 id="com2-win">Com 2</h2>
                         </div>
                         <img
                             src="./assets/img/tanganKiri.png"
@@ -212,8 +209,6 @@
                             width="125vh"
                             style="position: relative"
                         />
-
-                        <h2 id="com2-win">MENANG</h2>
                     </div>
                     <div
                         class="col-6 player-box d-flex flex-column-reverse align-items-end justify-content-center"
@@ -224,7 +219,7 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h4>Com 3</h4>
+                            <h2 id="com3-win">Com 3</h2>
                         </div>
                         <img
                             src="./assets/img/tanganKiri.png"
@@ -246,14 +241,12 @@
                                 position: relative;
                             "
                         />
-
-                        <h2 id="com3-win">MENANG</h2>
                     </div>
                 </div>
 
                 <div class="container" style="margin-top: 2vh">
                     <h4 class="text-white text-bold text-center" id="turnInfo">
-                        Sekarang Giliranmu!
+                        Sekarang Giliran Kamu!
                     </h4>
                     <h6
                         class="text-white text-bold text-center"

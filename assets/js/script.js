@@ -207,22 +207,20 @@ function getResult() {
 }
 
 $(document).ready(function () {
+    //setting awal
     $('#game').hide();
     $('#splash').show();
     $('#startGame').css({'visibility': 'hidden'});
     setTimeout(()=>{
         $('#startGame').css({'visibility': 'visible'});
     }, 1000);
-
     $("#notif").hide();
     $("#pickedNumberNotif").hide();
-    $("#player-win").hide();
-    $("#com1-win").hide();
-    $("#com2-win").hide();
-    $("#com3-win").hide();
     $("#gameOverNotif").hide();
     generateNumberPick();
 
+
+    //milih nomor
     $("#pickNumber").on("click", "button.pickBtn", function () {
         let val = $(this).val();
         $(this).addClass("picked");
@@ -256,7 +254,6 @@ $(document).ready(function () {
                 getResult();
                 changeTurn();
                 if (data.turn === "player") {
-                    $("#turnInfo").text("Sekarang Giliranmu!");
                     generateNumberPick();
                 } else {
                     generateThumbNumber();
@@ -268,26 +265,26 @@ $(document).ready(function () {
                 //cek menang kalah / reset tangan disini:
                 if (data.player.thumbNum == 0) {
                     //game berakhir
-                    $("#player-win").show();
+                    $("#player-win").html($(this).text() + '<br>[MENANG]');
                     $("#gameOverText").text("Hore!! Kamu menang!");
                     $("#gameOverNotif").show();
                     $("#notif").hide();
                 } else if (data.com1.thumbNum == 0) {
-                    $(`#com1-win`).show();
+                    $(`#com1-win`).html($(this).text() + '<br>[MENANG]');
 
                     //remove yang menang dari giliran:
                     data.turnposition = data.turnposition.filter((e) => {
                         return e != "com1";
                     });
                 } else if (data.com2.thumbNum == 0) {
-                    $(`#com2-win`).show();
+                    $(`#com2-win`).html($(this).text() + '<br>[MENANG]');
 
                     //remove yang menang dari giliran:
                     data.turnposition = data.turnposition.filter((e) => {
                         return e != "com2";
                     });
                 } else if (data.com3.thumbNum == 0) {
-                    $(`#com3-win`).show();
+                    $(`#com3-win`).html($(this).text() + '<br>[MENANG]');
 
                     //remove yang menang dari giliran:
                     data.turnposition = data.turnposition.filter((e) => {
@@ -305,7 +302,7 @@ $(document).ready(function () {
                     $("#notif").hide();
                 }
             }, 1000);
-        }, 2000);
+        }, 1500);
     });
 
     $("#startGame").click(() => {
