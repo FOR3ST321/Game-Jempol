@@ -170,7 +170,7 @@ function getResult() {
         data.thumbLeft--;
 
         $("#notif-text").html(`
-            <strong>${printName()} menang!</strong><br> <br>
+            <strong>Tebakan ${printName()} benar!</strong><br> <br>
             <strong>Angka Dipilih: </strong> ${picked} <br>
             <strong>Tangan (Player): </strong> ${data.player.pickedThumb} <br>
             <strong>Tangan (Com 1): </strong> ${com1} <br>
@@ -195,7 +195,7 @@ function getResult() {
         }
     } else {
         $("#notif-text").html(`
-        <strong>${printName()} gagal!</strong><br> <br>
+        <strong>Tebakan ${printName()} salah!</strong><br> <br>
         <strong>Angka Dipilih: </strong> ${picked} <br>
         <strong>Tangan (Player): </strong> ${data.player.pickedThumb} <br>
         <strong>Tangan (Com 1): </strong> ${com1} <br>
