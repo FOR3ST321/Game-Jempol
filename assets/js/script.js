@@ -4,6 +4,10 @@ function changeTurn() {
     data.turn = data.turnposition[data.turnIdx];
 }
 
+function printName(){
+    return (data.turn === "player") ? "Kamu" : "Com " + data.turn.slice(-1);
+}
+
 function generateThumbNumber() {
     $("#pickNumber").children().html(""); //reset
 
@@ -166,7 +170,7 @@ function getResult() {
         data.thumbLeft--;
 
         $("#notif-text").html(`
-            <strong>${data.turn} menang!</strong><br> <br>
+            <strong>${printName()} menang!</strong><br> <br>
             <strong>Angka Dipilih: </strong> ${picked} <br>
             <strong>Tangan (Player): </strong> ${data.player.pickedThumb} <br>
             <strong>Tangan (Com 1): </strong> ${com1} <br>
@@ -191,7 +195,7 @@ function getResult() {
         }
     } else {
         $("#notif-text").html(`
-        <strong>${data.turn} gagal!</strong><br> <br>
+        <strong>${printName()} gagal!</strong><br> <br>
         <strong>Angka Dipilih: </strong> ${picked} <br>
         <strong>Tangan (Player): </strong> ${data.player.pickedThumb} <br>
         <strong>Tangan (Com 1): </strong> ${com1} <br>
@@ -235,7 +239,7 @@ $(document).ready(function () {
             if (data.turn === "player" && data.mode === "number") {
                 data.player.pickedNumber = parseInt(val);
                 $("#instruction").text(
-                    "Pilih Jumlah Ibu jari yang mau dikeluarin"
+                    "Pilih Jumlah Ibu jari yang mau dimajuin"
                 );
                 generateThumbNumber();
 
@@ -352,8 +356,7 @@ $(document).ready(function () {
         data.movedHand = []; //reset
         data.hideHand = [];
 
-        let msg = data.turn === "player" ? "Kamu" : data.turn;
-        $("#turnInfo").text("Sekarang Giliran " + msg + "!");
+        $("#turnInfo").text("Sekarang Giliran " + printName() + "!");
 
         $("#notif").hide();
     });
