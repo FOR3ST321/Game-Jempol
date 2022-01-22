@@ -1,0 +1,59 @@
+html,
+body {
+    margin: 0px;
+    /* font-family: ‘Roboto’; */
+    height: 100%;
+}
+
+.box {
+    height: 100%;
+    background: #180F2C;
+}
+
+.splash-btn{
+    background: #424242;
+    font-weight:bold;
+    border: 2px solid white;
+    color:white;
+}
+
+.splash-btn:hover{
+    color:white;
+    background: #212121;
+}
+
+.player-box{
+    height:35vh;
+}
+
+#playerBox{
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#com1Box{
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#com2Box{
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+}
+
+#com3Box{
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+}
+
+.pickBtn{
+    text-decoration:none;
+    padding:15px 20px;
+    font-weight:bold;
+    font-size:1.7vh;
+    background-color:#C0C0C0;
+}
+
+.pickBtn:hover{
+    background: #A1A1A1;
+}
