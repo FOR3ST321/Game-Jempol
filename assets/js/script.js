@@ -107,6 +107,17 @@ function win(player, name) {
     player.thumbNum--;
 }
 
+function printResult(picked, pickedThumb, com1, com2, com3, txt){
+    $("#notif-text").html(`
+        <strong>Tebakan ${printName()} ${txt}!</strong><br> <br>
+        <strong>Angka Dipilih: </strong> ${picked} <br>
+        <strong>Tangan (Player): </strong> ${pickedThumb} <br>
+        <strong>Tangan (Com 1): </strong> ${com1} <br>
+        <strong>Tangan (Com 2): </strong> ${com2} <br>
+        <strong>Tangan (Com 3): </strong> ${com3}
+    `);
+}
+
 function getResult() {
     let com1 = 0,
         com2 = 0,
@@ -169,14 +180,7 @@ function getResult() {
     if (picked === com1 + com2 + com3 + data.player.pickedThumb) {
         data.thumbLeft--;
 
-        $("#notif-text").html(`
-            <strong>Tebakan ${printName()} benar!</strong><br> <br>
-            <strong>Angka Dipilih: </strong> ${picked} <br>
-            <strong>Tangan (Player): </strong> ${data.player.pickedThumb} <br>
-            <strong>Tangan (Com 1): </strong> ${com1} <br>
-            <strong>Tangan (Com 2): </strong> ${com2} <br>
-            <strong>Tangan (Com 3): </strong> ${com3}
-        `);
+        printResult(picked, data.player.pickedThumb, com1, com2, com3, 'benar')
 
         // alert(data.turn + " win!");
         switch (data.turn) {
@@ -194,14 +198,7 @@ function getResult() {
                 break;
         }
     } else {
-        $("#notif-text").html(`
-        <strong>Tebakan ${printName()} salah!</strong><br> <br>
-        <strong>Angka Dipilih: </strong> ${picked} <br>
-        <strong>Tangan (Player): </strong> ${data.player.pickedThumb} <br>
-        <strong>Tangan (Com 1): </strong> ${com1} <br>
-        <strong>Tangan (Com 2): </strong> ${com2} <br>
-        <strong>Tangan (Com 3): </strong> ${com3}
-    `);
+        printResult(picked, data.player.pickedThumb, com1, com2, com3, 'salah')
     }
 
     setTimeout(function () {
@@ -258,6 +255,8 @@ $(document).ready(function () {
                 getResult();
                 changeTurn();
                 if (data.turn === "player") {
+                    $('#instruction').text("Mau pilih Angka Berapa?");
+
                     generateNumberPick();
                 } else {
                     generateThumbNumber();
