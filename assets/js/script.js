@@ -349,7 +349,7 @@ $(document).ready(function () {
 
         //hide tangan
         data.hideHand.forEach((e) => {
-            $(e).hide();
+            $(e).css({opacity:0});
         });
 
         data.movedHand = []; //reset
