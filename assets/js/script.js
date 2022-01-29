@@ -309,6 +309,10 @@ $(document).ready(function () {
     });
 
     $("#startGame").click(() => {
+        const audio = new Audio("./assets/audio.mp3");
+        audio.loop = true;
+        audio.volume = 0.5;
+        audio.play();
         $("#splash").hide();
         $("#game").show();
     });
