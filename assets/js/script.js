@@ -4,8 +4,8 @@ function changeTurn() {
     data.turn = data.turnposition[data.turnIdx];
 }
 
-function printName(){
-    return (data.turn === "player") ? "Kamu" : "Com " + data.turn.slice(-1);
+function printName() {
+    return data.turn === "player" ? "Kamu" : "Com " + data.turn.slice(-1);
 }
 
 function generateThumbNumber() {
@@ -65,14 +65,20 @@ function moveHand(handObj, handPicked) {
                 //cek jempol kiri
                 if (e.obj.thumbLeft) {
                     //majuin kiri doang
-                    $(`.${e.name}.left`).css(css).animate(move);
+                    $(`.${e.name}.left`)
+                        .attr("src", "./assets/img/tanganKananUp.png")
+                        .css(css)
+                        .animate(move);
                     data.movedHand.push({
                         selector: `.${e.name}.left`,
                         move: mode,
                     });
                 } else {
                     //majuin kanan doang
-                    $(`.${e.name}.right`).css(css).animate(move);
+                    $(`.${e.name}.right`)
+                        .attr("src", "./assets/img/tanganKiriUp.png")
+                        .css(css)
+                        .animate(move);
                     data.movedHand.push({
                         selector: `.${e.name}.right`,
                         move: mode,
@@ -80,8 +86,14 @@ function moveHand(handObj, handPicked) {
                 }
             } else if (e.val === 2) {
                 //majuin dua duanya
-                $(`.${e.name}.right`).css(css).animate(move);
-                $(`.${e.name}.left`).css(css).animate(move);
+                $(`.${e.name}.right`)
+                    .attr("src", "./assets/img/tanganKiriUp.png")
+                    .css(css)
+                    .animate(move);
+                $(`.${e.name}.left`)
+                    .attr("src", "./assets/img/tanganKananUp.png")
+                    .css(css)
+                    .animate(move);
                 data.movedHand.push({
                     selector: `.${e.name}.left`,
                     move: mode,
@@ -107,7 +119,7 @@ function win(player, name) {
     player.thumbNum--;
 }
 
-function printResult(picked, pickedThumb, com1, com2, com3, txt){
+function printResult(picked, pickedThumb, com1, com2, com3, txt) {
     $("#notif-text").html(`
         <strong>Tebakan ${printName()} ${txt}!</strong><br> <br>
         <strong>Angka Dipilih: </strong> ${picked} <br>
@@ -180,7 +192,7 @@ function getResult() {
     if (picked === com1 + com2 + com3 + data.player.pickedThumb) {
         data.thumbLeft--;
 
-        printResult(picked, data.player.pickedThumb, com1, com2, com3, 'benar')
+        printResult(picked, data.player.pickedThumb, com1, com2, com3, "benar");
 
         // alert(data.turn + " win!");
         switch (data.turn) {
@@ -198,7 +210,7 @@ function getResult() {
                 break;
         }
     } else {
-        printResult(picked, data.player.pickedThumb, com1, com2, com3, 'salah')
+        printResult(picked, data.player.pickedThumb, com1, com2, com3, "salah");
     }
 
     setTimeout(function () {
@@ -209,17 +221,17 @@ function getResult() {
 
 $(document).ready(function () {
     //setting awal
-    $('#game').hide();
-    $('#splash').show();
-    $('#startGame').css({'visibility': 'hidden'});
-    setTimeout(()=>{
-        $('#startGame').css({'visibility': 'visible'});
+    $("#game").hide();
+    $("#splash").show();
+    $("#startGame").css({ visibility: "hidden" });
+    setTimeout(() => {
+        $("#startGame").css({ visibility: "visible" });
     }, 1000);
     $("#notif").hide();
     $("#pickedNumberNotif").hide();
     $("#gameOverNotif").hide();
-    generateNumberPick();
 
+    generateNumberPick();
 
     //milih nomor
     $("#pickNumber").on("click", "button.pickBtn", function () {
@@ -255,7 +267,7 @@ $(document).ready(function () {
                 getResult();
                 changeTurn();
                 if (data.turn === "player") {
-                    $('#instruction').text("Mau pilih Angka Berapa?");
+                    $("#instruction").text("Mau pilih Angka Berapa?");
 
                     generateNumberPick();
                 } else {
@@ -268,26 +280,27 @@ $(document).ready(function () {
                 //cek menang kalah / reset tangan disini:
                 if (data.player.thumbNum == 0) {
                     //game berakhir
-                    $("#player-win").html($(this).text() + '<br>[MENANG]');
+                    $("#player-win").html($(this).text() + "<br>[MENANG]");
                     $("#gameOverText").text("Hore!! Kamu menang!");
+                    $("#gameOverGif").attr("src", "./assets/img/win.gif");
                     $("#gameOverNotif").show();
                     $("#notif").hide();
                 } else if (data.com1.thumbNum == 0) {
-                    $(`#com1-win`).html($(this).text() + '<br>[MENANG]');
+                    $(`#com1-win`).html($(this).text() + "<br>[MENANG]");
 
                     //remove yang menang dari giliran:
                     data.turnposition = data.turnposition.filter((e) => {
                         return e != "com1";
                     });
                 } else if (data.com2.thumbNum == 0) {
-                    $(`#com2-win`).html($(this).text() + '<br>[MENANG]');
+                    $(`#com2-win`).html($(this).text() + "<br>[MENANG]");
 
                     //remove yang menang dari giliran:
                     data.turnposition = data.turnposition.filter((e) => {
                         return e != "com2";
                     });
                 } else if (data.com3.thumbNum == 0) {
-                    $(`#com3-win`).html($(this).text() + '<br>[MENANG]');
+                    $(`#com3-win`).html($(this).text() + "<br>[MENANG]");
 
                     //remove yang menang dari giliran:
                     data.turnposition = data.turnposition.filter((e) => {
@@ -301,6 +314,7 @@ $(document).ready(function () {
                     data.com3.thumbNum === 0
                 ) {
                     $("#gameOverText").text("Yah, Kamu kalah :(");
+                    $("#gameOverGif").attr("src", "./assets/img/lose.gif");
                     $("#gameOverNotif").show();
                     $("#notif").hide();
                 }
@@ -324,7 +338,7 @@ $(document).ready(function () {
             let obj = e;
             // alert('geser');
 
-            let move, css;
+            let move, css, src;
             if (obj.move === "right") {
                 //kalau tadi gerak kanan, sekarang geser kiri
                 move = {
@@ -346,14 +360,20 @@ $(document).ready(function () {
                 };
             }
 
-            $(obj.selector).css(css).animate({
+            if (obj.selector.endsWith(".left")) {
+                src = "./assets/img/tanganKiri.png";
+            } else {
+                src = "./assets/img/tanganKanan.png";
+            }
+
+            $(obj.selector).attr("src", src).css(css).animate({
                 move,
             });
         });
 
         //hide tangan
         data.hideHand.forEach((e) => {
-            $(e).css({opacity:0});
+            $(e).css({ opacity: 0 });
         });
 
         data.movedHand = []; //reset

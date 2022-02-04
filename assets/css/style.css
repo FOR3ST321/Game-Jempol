@@ -46,12 +46,42 @@ body {
     border-top: 2px solid black;
 }
 
+.imgTangan{
+    width:120px;
+}
+
+.nameTxt{
+    font-size:28px;
+}
+
+@media screen and (max-width: 700px) {
+    .imgTangan{
+        width:75px;
+    }
+    .left{
+        margin-bottom:15px;
+    }
+    .right{
+        margin-top:15px;
+    }
+    .nameTxt{
+        font-size:20px;
+    }
+}
+
+
+
+
+
 .pickBtn{
     text-decoration:none;
     padding:15px 20px;
     font-weight:bold;
     font-size:1.7vh;
-    background-color:#C0C0C0;
+    background-color:rgba(192, 192, 192, 0.9);
+    border: 1px solid #424242;
+    border-radius:5px;
+    box-shadow: 13px 5px 36px -8px rgba(0,0,0,0.30);
 }
 
 .pickBtn:hover{

@@ -64,11 +64,16 @@
                         border-radius: 10px;
                     "
                 >
-                    <h3 class="text-bold">Permainan Selesai!</h3>
+                    <h4 class="text-bold">Permainan Selesai!</h4>
                     <h5 class="text-bold" id="gameOverText">Kamu Kalah :(</h5>
+                    <img src="" alt="" style="height: 30vh;" id="gameOverGif">
                     <p id="notif-text" class="text-center"></p>
-                    <button class="btn btn-success" id="restart">
-                        Main lagi!
+                    <button
+                        style="margin-top: 5vh"
+                        class="btn-lg splash-btn"
+                        id="restart"
+                    >
+                        Main Lagi!
                     </button>
                 </div>
             </div>
@@ -124,8 +129,8 @@
             </div>
         </div>
 
-        <div class="box d-flex">
-            <div id="game" class="container-fluid">
+        <div class="box d-flex flex-column">
+            <div id="game" class="container-fluid" style="background-color: aqua;">
                 <div class="row">
                     <div
                         class="col-6 player-box d-flex flex-column justify-content-center"
@@ -136,22 +141,19 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h3 id="player-win">Player</h2>
+                            <h3 class="nameTxt" id="player-win">Player</h2>
                         </div>
                         <img
                             src="./assets/img/tanganKiri.png"
                             alt=""
-                            class="img-fluid player left"
-                            width="125vh"
+                            class="img-fluid player left imgTangan"
                             style="position: relative"
                         />
                         <img
                             src="./assets/img/tanganKanan.png"
                             alt=""
                             id="com1Right"
-                            class="img-fluid player right"
-                            width="125vh"
-                            ,
+                            class="img-fluid player right imgTangan"
                             style="position: relative"
                         />
                     </div>
@@ -164,28 +166,29 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h3 id="com1-win">Com 1</h3>
+                            <h3 class="nameTxt" id="com1-win">Com 1</h3>
                         </div>
+                        <img
+                        src="./assets/img/tanganKanan.png"
+                        alt=""
+                        class="img-fluid com1 right imgTangan"
+                        style="
+                            transform: rotate(180deg);
+                            position: relative;
+                            transform: scaleX(-1);
+                        "
+                    />
                         <img
                             src="./assets/img/tanganKiri.png"
                             alt=""
-                            class="img-fluid com1 left"
-                            width="125vh"
+                            class="img-fluid com1 left imgTangan"
                             style="
                                 transform: rotate(180deg);
                                 position: relative;
+                                transform: scaleX(-1);
                             "
                         />
-                        <img
-                            src="./assets/img/tanganKanan.png"
-                            alt=""
-                            class="img-fluid com1 right"
-                            width="125vh"
-                            style="
-                                transform: rotate(180deg);
-                                position: relative;
-                            "
-                        />
+                       
                     </div>
                     <div
                         class="col-6 player-box d-flex flex-column justify-content-center"
@@ -196,20 +199,18 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h3 id="com2-win">Com 2</h3>
+                            <h3 class="nameTxt" id="com2-win">Com 2</h3>
                         </div>
                         <img
                             src="./assets/img/tanganKiri.png"
                             alt=""
-                            class="img-fluid com2 left"
-                            width="125vh"
+                            class="img-fluid com2 left imgTangan"
                             style="position: relative"
                         />
                         <img
                             src="./assets/img/tanganKanan.png"
                             alt=""
-                            class="img-fluid com2 right"
-                            width="125vh"
+                            class="img-fluid com2 right imgTangan"
                             style="position: relative"
                         />
                     </div>
@@ -222,51 +223,53 @@
                             class="container-fluid text-center"
                             style="position: absolute"
                         >
-                            <h3 id="com3-win">Com 3</h3>
+                            <h3 class="nameTxt" id="com3-win">Com 3</h3>
                         </div>
                         <img
-                            src="./assets/img/tanganKiri.png"
+                            src="./assets/img/tanganKanan.png"
                             alt=""
-                            class="img-fluid com3 left"
-                            width="125vh"
+                            class="img-fluid com3 right imgTangan"
                             style="
                                 transform: rotate(180deg);
+                                transform: scaleX(-1);
                                 position: relative;
                             "
                         />
                         <img
-                            src="./assets/img/tanganKanan.png"
+                            src="./assets/img/tanganKiri.png"
                             alt=""
-                            class="img-fluid com3 right"
-                            width="125vh"
+                            class="img-fluid com3 left imgTangan"
                             style="
                                 transform: rotate(180deg);
                                 position: relative;
+                                transform: scaleX(-1);
                             "
                         />
                     </div>
                 </div>
 
-                <div class="container" style="margin-top: 2vh">
-                    <h4 class="text-white text-bold text-center" id="turnInfo">
-                        Sekarang Giliran Kamu!
-                    </h4>
-                    <h6
-                        class="text-white text-bold text-center"
-                        id="instruction"
-                    >
-                        Mau pilih Angka Berapa?
-                    </h6>
+                    
+            </div>
+            <div class="container-fluid" style="padding-top: 1vh;background-image: url(./assets/img/pickBg.png);
+            background-size: 100%;height: 30vh;border-top: 4px solid black;">
+                <h4 class="text-white text-bold text-center" id="turnInfo">
+                    Sekarang Giliran Kamu!
+                </h4>
+                <h6
+                    class="text-white text-bold text-center"
+                    id="instruction"
+                >
+                    Mau pilih Angka Berapa?
+                </h6>
 
+                <div
+                    id="pickNumber"
+                    class="d-flex justify-content-center"
+                    style="margin-top: 2vh"
+                >
                     <div
-                        id="pickNumber"
-                        class="d-flex justify-content-center"
-                        style="margin-top: 2vh"
-                    >
-                        <div
-                            class="d-flex flex-wrap justify-content-between col-sm-12 col-md-8"
-                        ></div>
-                    </div>
+                        class="d-flex flex-wrap justify-content-between col-sm-12 col-md-8"
+                    ></div>
                 </div>
             </div>
         </div>
