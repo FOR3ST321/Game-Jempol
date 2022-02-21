@@ -54,6 +54,10 @@ body {
     font-size:28px;
 }
 
+.tutor-desc{
+    font-size:20px;
+}
+
 @media screen and (max-width: 700px) {
     .imgTangan{
         width:75px;
@@ -66,6 +70,9 @@ body {
     }
     .nameTxt{
         font-size:20px;
+    }
+    .tutor-desc{
+        font-size:14px;
     }
 }
 

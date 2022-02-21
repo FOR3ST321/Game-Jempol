@@ -107,6 +107,33 @@ function moveHand(handObj, handPicked) {
     });
 }
 
+function checkBotWin(){
+    if (data.com1.thumbNum == 0) {
+        $(`#com1-win`).html("Menang!");
+
+        //remove yang menang dari giliran:
+        data.turnposition = data.turnposition.filter((e) => {
+            return e != "com1";
+        });
+    }
+    if (data.com2.thumbNum == 0) {
+        $(`#com2-win`).html("Menang!");
+
+        //remove yang menang dari giliran:
+        data.turnposition = data.turnposition.filter((e) => {
+            return e != "com2";
+        });
+    }
+    if (data.com3.thumbNum == 0) {
+        $(`#com3-win`).html("Menang!");
+
+        //remove yang menang dari giliran:
+        data.turnposition = data.turnposition.filter((e) => {
+            return e != "com3";
+        });
+    }
+}
+
 function win(player, name) {
     if (player.thumbNum === 2) {
         player.thumbRight = false;
@@ -219,17 +246,25 @@ function getResult() {
     }, 1000);
 }
 
+
+//hide sebelum document ready
+$("#notif").hide();
+$("#pickedNumberNotif").hide();
+$("#gameOverNotif").hide();
+$("#game").hide();
+
 $(document).ready(function () {
     //setting awal
-    $("#game").hide();
     $("#splash").show();
     $("#startGame").css({ visibility: "hidden" });
     setTimeout(() => {
         $("#startGame").css({ visibility: "visible" });
     }, 1000);
-    $("#notif").hide();
-    $("#pickedNumberNotif").hide();
-    $("#gameOverNotif").hide();
+    $("#tutorial").css({ visibility: "hidden" });
+    setTimeout(() => {
+        $("#tutorial").css({ visibility: "visible" });
+    }, 1000);
+    
 
     generateNumberPick();
 
@@ -277,47 +312,8 @@ $(document).ready(function () {
             }
 
             setTimeout(function () {
-                //cek menang kalah / reset tangan disini:
-                if (data.player.thumbNum == 0) {
-                    //game berakhir
-                    $("#player-win").html($(this).text() + "<br>[MENANG]");
-                    $("#gameOverText").text("Hore!! Kamu menang!");
-                    $("#gameOverGif").attr("src", "./assets/img/win.gif");
-                    $("#gameOverNotif").show();
-                    $("#notif").hide();
-                } else if (data.com1.thumbNum == 0) {
-                    $(`#com1-win`).html($(this).text() + "<br>[MENANG]");
-
-                    //remove yang menang dari giliran:
-                    data.turnposition = data.turnposition.filter((e) => {
-                        return e != "com1";
-                    });
-                } else if (data.com2.thumbNum == 0) {
-                    $(`#com2-win`).html($(this).text() + "<br>[MENANG]");
-
-                    //remove yang menang dari giliran:
-                    data.turnposition = data.turnposition.filter((e) => {
-                        return e != "com2";
-                    });
-                } else if (data.com3.thumbNum == 0) {
-                    $(`#com3-win`).html($(this).text() + "<br>[MENANG]");
-
-                    //remove yang menang dari giliran:
-                    data.turnposition = data.turnposition.filter((e) => {
-                        return e != "com3";
-                    });
-                }
-                //kalau semua bot menang
-                if (
-                    data.com1.thumbNum === 0 &&
-                    data.com2.thumbNum === 0 &&
-                    data.com3.thumbNum === 0
-                ) {
-                    $("#gameOverText").text("Yah, Kamu kalah :(");
-                    $("#gameOverGif").attr("src", "./assets/img/lose.gif");
-                    $("#gameOverNotif").show();
-                    $("#notif").hide();
-                }
+                //cek menang bot disini:
+                checkBotWin();
             }, 1000);
         }, 1500);
     });
@@ -333,7 +329,7 @@ $(document).ready(function () {
 
     $("#closeNotif").click(function () {
         //mundurin semua tangan yang digeser
-        console.log(data.movedHand);
+        // console.log(data.movedHand);
         data.movedHand.forEach((e) => {
             let obj = e;
             // alert('geser');
@@ -381,10 +377,39 @@ $(document).ready(function () {
 
         $("#turnInfo").text("Sekarang Giliran " + printName() + "!");
 
+        if (data.player.thumbNum == 0) {
+            //game berakhir
+            $("#notif").hide();
+            $("#player-win").html("Menang!");
+            $("#gameOverText").text("Hore!! Kamu menang!");
+            $("#gameOverGif").attr("src", "./assets/img/win.gif");
+            $("#gameOverNotif").show();
+            return;
+        }
+        if (
+            data.com1.thumbNum === 0 &&
+            data.com2.thumbNum === 0 &&
+            data.com3.thumbNum === 0
+        ) {
+            $("#notif").hide();
+            $("#gameOverText").text("Yah, Kamu kalah :(");
+            $("#gameOverGif").attr("src", "./assets/img/lose.gif");
+            $("#gameOverNotif").show();
+            return;
+        }
+
         $("#notif").hide();
     });
 
     $("#restart").click(function () {
         location.reload();
+    });
+
+    $("#back").click(function(){
+        window.location.href = "./index.html"
+    });
+
+    $("#tutorial").click(function(){
+        window.location.href = "./tutorial.html"
     });
 });

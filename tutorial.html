@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Game Angkat Jempol yang bisa dimainkan secara digital, lawannya adalah 3 komputer, selamat bermain!! Game ini dibuat untuk memenuhi tugas dari mata kuliah Multimedia System">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <link rel = "icon" href ="./assets/img/icon.png" type = "image/x-icon">
+
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <title>Game Jempol</title>
+    </head>
+    <body>
+        
+        <div id="notif">
+            <div
+                class="box d-flex align-items-center justify-content-center"
+                style="
+                    position: fixed;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 99;
+                    width: 100%;
+                "
+            >
+                <div
+                    class="test d-flex flex-column align-items-center justify-content-center"
+                    style="
+                        padding: 3vw 10vh;
+                        background-color: white;
+                        border-radius: 10px;
+                    "
+                >
+                    <h3 class="text-bold">Hasil Ronde</h3>
+                    <p id="notif-text" class="text-center"></p>
+                    <button class="btn btn-lg btn-secondary" id="closeNotif">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameOverNotif">
+            <div
+                class="box d-flex align-items-center justify-content-center"
+                style="
+                    position: fixed;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    z-index: 99;
+                    width: 100%;
+                "
+            >
+                <div
+                    class="test d-flex flex-column align-items-center justify-content-center"
+                    style="
+                        padding: 3vw 10vh;
+                        background-color: white;
+                        border-radius: 10px;
+                    "
+                >
+                    <h4 class="text-bold">Permainan Selesai!</h4>
+                    <h5 class="text-bold" id="gameOverText">Kamu Kalah :(</h5>
+                    <img src="" alt="" style="height: 30vh;" id="gameOverGif">
+                    <p id="notif-text" class="text-center"></p>
+                    <button
+                        style="margin-top: 5vh"
+                        class="btn-lg splash-btn"
+                        id="restart"
+                    >
+                        Main Lagi!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pickedNumberNotif">
+            <div
+                class="box d-flex align-items-center justify-content-center"
+                style="
+                    position: fixed;
+                    background-color: rgba(0, 0, 0, 0);
+                    z-index: 99;
+                    width: 100%;
+                "
+            >
+                <h3
+                    class="text-white text=center"
+                    style="
+                        background-color: black;
+                        padding: 10px;
+                        border-radius: 10px;
+                        margin-bottom: 30vh;
+                        font-size:45px;
+                    "
+                    id="numberNotifText"
+                ></h3>
+            </div>
+        </div>
+
+        <div id="splash" style="overflow-y: auto;">
+            <div
+                class="box d-flex align-items-center justify-content-center"
+                style="
+                    position: fixed;
+                    background-color: rgba(0, 0, 0, 1);
+                    z-index: 99;
+                    width: 100%;
+                "
+            >
+                <div class="d-flex flex-column align-items-center">
+                    <h2 class="text-white text-center">
+                        Cara Bermain
+                    </h2>
+                    <div style="border: 2px solid rgba(255, 255, 255, 1);border-radius:10px;width: 80vw;height: 80vh;padding: 10px;color: white;overflow-y: auto;">
+                        <p class="tutor-desc">
+                            Saat turn kamu dimulai, kamu harus memilih angka yang tersedia, lalu pilih jumlah ibu jari yang ingin kamu keluarkan.
+                            <br> <br>
+                            Jika jumlah ibu jari yang dikeluarkan oleh bot dan player sama dengan jumlah angka yang disebutkan, maka ibu jari dari player yang turn nya sedang berjalan akan dikurangi satu.
+                            <br> <br>
+                            Tugas kamu adalah membuat jumlah jari yang dikeluarkan sesuai dengan angka yang kamu sebutkan, dan membuat player lain salah menebak jumlah angka saat turn mereka berjalan.
+                            <br> <br>
+                            Kamu akan menang apabila sudah tidak ada lagi ibu jari yang ada dalam permainan. Kamu kalah apabila semua player lain sudah menang.
+                            <br> <br>
+                            <a href="https://www.youtube.com/watch?v=Q9namkcobN0" target="_blank">Tonton video ini untuk memahami cara bermain dengan lebih detail!</a>
+                            <br> <br>
+                            <a href="#" target="_blank">Tonton juga trailer dari game ini!</a>
+                            
+                        </p>
+                    </div>
+                    <button
+                        style="margin-top: 2vh;width:220px"
+                        class="btn-lg splash-btn"
+                        id="back"
+                    >
+                        Kembali
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="./assets/js/data.js"></script>
+        <script src="./assets/js/script.js"></script>
+    </body>
+</html>
